@@ -6,6 +6,7 @@ data oriented unittest framework
 ## Install
 
 ```bash
+$ pip3 install dataci
 ```
 
 
@@ -40,9 +41,11 @@ $ make build
 $ make install
 ```
 
-#### Run examples:
+#### Run examples
 
 ```bash
+$ cd examples
+$ PYTHONPATH=. pytest tests.py
 ```
 
 #### Release to pypi
