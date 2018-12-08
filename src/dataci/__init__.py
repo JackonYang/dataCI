@@ -11,6 +11,7 @@ exclude_keys = [
 def apply_data(data, f, filename=None):
     for tc in data:  # tc is short for testcase
         try:
+            print(tc)
             if isinstance(tc, dict):
                 tc = {k: v for k, v in tc.items() if k not in exclude_keys}
                 f(**tc)
