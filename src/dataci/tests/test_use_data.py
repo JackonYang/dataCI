@@ -1,4 +1,7 @@
-from dataci import use_data
+from dataci import (
+    use_data,
+    use_json_data,
+)
 
 
 data_simple_2_kwargs = (
@@ -29,6 +32,22 @@ def test_basic_func():
     assert got == expect
 
 
+def test_basic_func_json(request):
+    got = []
+
+    @use_json_data('data_simple_2_kwargs.json')
+    def merge(input_obj, expect):
+        got.append('%s--%s' % (input_obj, expect))
+
+    merge(request)
+
+    expect = [
+        '%s--%s' % (i['input_obj'], i['expect']) for i in data_simple_2_kwargs
+    ]
+
+    assert got == expect
+
+
 data_comment_kwargs = (
     {
         '#': 'this is a class A record',
@@ -50,6 +69,22 @@ def test_comment_func():
     def merge(input_obj, expect):
         got.append('%s--%s' % (input_obj, expect))
     
+    merge()
+
+    expect = [
+        '%s--%s' % (i['input_obj'], i['expect']) for i in data_simple_2_kwargs
+    ]
+
+    assert got == expect
+
+
+def taaest_comment_func_json():
+    got = []
+
+    @use_json_data('data_comment_kwargs.json')
+    def merge(input_obj, expect):
+        got.append('%s--%s' % (input_obj, expect))
+
     merge()
 
     expect = [
